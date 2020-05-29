@@ -58,6 +58,20 @@ module.exports = {
         test: /\.pug$/,
         use: ['html-loader', 'pug-html-loader'],
       },
+      {
+        test: /\.(jpe?g|png|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'assets',
+        },
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2)$/i,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'fonts',
+        },
+      },
     ],
   },
   plugins: [
