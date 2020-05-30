@@ -9,7 +9,7 @@ const DefinePluginConfig = new webpack.DefinePlugin({
 })
 
 const MiniCssExtractPluginConfig = new MiniCssExtractPlugin({
-  filename: '[hash].[name].css',
+  filename: 'styles/[hash].[name].css',
 })
 
 const getHtmlWebpackPluginConfigs = () => {
@@ -31,7 +31,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[hash].[name].js',
+    filename: 'scripts/[hash].[name].js',
   },
   module: {
     rules: [
@@ -49,7 +49,7 @@ module.exports = {
           process.env.NODE_ENV === 'production'
             ? MiniCssExtractPlugin.loader
             : 'style-loader',
-          'css-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
           'postcss-loader',
           'sass-loader',
         ],
@@ -62,14 +62,14 @@ module.exports = {
         test: /\.(jpe?g|png|svg)$/i,
         loader: 'file-loader',
         options: {
-          outputPath: 'assets',
+          outputPath: path.join('assets', 'images'),
         },
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/i,
         loader: 'file-loader',
         options: {
-          outputPath: 'fonts',
+          outputPath: path.join('assets', 'fonts'),
         },
       },
     ],
