@@ -5,17 +5,21 @@
     "static",
     "pug",
     "scss",
+    "javascript",
     "es11",
+    "jest",
     "webpack",
     "multiple entries"
   ],
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
+    "test": "jest",
     "lint": "eslint '**/*.js' --quiet"
   },
   "lint-staged": {
     "*.js": [
+      "yarn test --bail --findRelatedTests",
       "yarn lint --fix",
       "git add ."
     ]
@@ -47,6 +51,7 @@
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
+    "jest": "^26.0.1",
     "lint-staged": "^10.2.7",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
